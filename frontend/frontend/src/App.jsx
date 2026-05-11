@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import "./App.css";
+
+import {
+  getNotes,
+  addNote,
+  deleteNote,
+} from "./services/api";
 
 function App() {
   const [text, setText] = useState("");
   const [notes, setNotes] = useState([]);
 
-  const API_URL = "http://localhost:8080/notes";
-
   const fetchNotes = async () => {
-    const res = await axios.get(API_URL);
+    const res = await getNotes();
     setNotes(res.data);
   };
 
-  const addNote = async () => {
+  const handleAddNote = async () => {
     if (!text.trim()) return;
 
-    await axios.post(API_URL, { text });
+    await addNote(text);
     setText("");
     fetchNotes();
   };
 
-  const deleteNote = async (id) => {
-    await axios.delete(`${API_URL}/${id}`);
+  const handleDeleteNote = async (id) => {
+    await deleteNote(id);
     fetchNotes();
   };
 
@@ -41,14 +44,24 @@ function App() {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button onClick={addNote}>Add</button>
+
+        <button onClick={handleAddNote}>
+          Add
+        </button>
       </div>
 
       <ul>
         {notes.map((note) => (
           <li key={note.id}>
             {note.text}
-            <button onClick={() => deleteNote(note.id)}>Delete</button>
+
+            <button
+              onClick={() =>
+                handleDeleteNote(note.id)
+              }
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
