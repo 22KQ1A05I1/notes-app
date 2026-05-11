@@ -1,9 +1,3 @@
-//package com.example.notesapp.controller;
-//
-//public class NoteController {
-//
-//}
-
 package com.example.notesapp.controller;
 
 import com.example.notesapp.model.Note;
@@ -34,7 +28,7 @@ public class NoteController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteNote(@PathVariable String id) {
+    public void deleteNote(@PathVariable Long id) {
         noteRepository.deleteById(id);
     }
 }
