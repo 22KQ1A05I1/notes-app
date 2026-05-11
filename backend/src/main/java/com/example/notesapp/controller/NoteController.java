@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+    @CrossOrigin(origins = "https://notes-app-git-main-pavan23.vercel.app")
 @RequestMapping("/notes")
-@CrossOrigin("*")
+
 public class NoteController {
 
     private final NoteRepository noteRepository;
