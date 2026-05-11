@@ -1,14 +1,7 @@
-//package com.example.notesapp.repository;
-//
-//public class NoteRepository {
-//
-//}
-
-
 package com.example.notesapp.repository;
 
 import com.example.notesapp.model.Note;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface NoteRepository extends MongoRepository<Note, String> {
+public interface NoteRepository extends JpaRepository<Note, Long> {
 }
