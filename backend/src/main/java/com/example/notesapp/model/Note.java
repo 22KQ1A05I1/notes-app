@@ -1,26 +1,27 @@
 package com.example.notesapp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-//
-//package com.example.notesapp.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "notes")
+@Entity
 public class Note {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String text;
 
-    public Note() {}
+    public Note() {
+    }
 
     public Note(String text) {
         this.text = text;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -28,7 +29,7 @@ public class Note {
         return text;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
